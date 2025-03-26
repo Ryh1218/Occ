@@ -48,7 +48,7 @@ Use 'convert_occlusion_annotation.py' to generate occlusion annotations for COCO
 Update the paths in the configuration files 'configs/occlusion/pid.py' and 'configs/occlusion/pix.py' according to your setup.
 
 
-## Running
+## Train & Test
 Our code has been successfully tested on:
 
 * 1 × NVIDIA A800 Tensor Core GPU
