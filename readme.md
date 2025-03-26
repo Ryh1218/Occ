@@ -1,13 +1,13 @@
 # Prohibited Items Segmentation via Occlusion-aware Bilayer Modeling
-Official PyTorch implementation of Prohibited Items Segmentation via Occlusion-aware Bilayer Modeling.
+Official PyTorch Implementation of Prohibited Items Segmentation via Occlusion-aware Bilayer Modeling.
 
 This paper is accepted by ICME 2025.
 
 ## Get Started
 ### Dependencies
-We test our code using Linux system with Pytorch 2.1.2 and CUDA 11.8.
+Code is tested on Linux with Pytorch 2.1.2 and CUDA 11.8.
 
-If necessary, install numpy with version lower than 2.0.0 (we use 1.24.0).
+If necessary, install numpy<2.0.0 (we use 1.24.0).
 ```
 conda create -n occ python=3.10
 conda activate occ
@@ -19,7 +19,7 @@ pip install -U transformers==4.38.1 wandb==0.16.3 einops pycocotools shapely sci
 ```
 
 ### Prepare Model Weights
-Pre-download the SAM weights. For example, 'SAM-vit-large' can be downloaded using the following script:
+Pre-download the SAM weights (e.g., SAM-vit-large) and update the paths in 'convert_model_weights.py'. Weights can be downloaded using the following script:
 ```
 from transformers import SamModel
 import os
@@ -33,53 +33,63 @@ model = SamModel.from_pretrained(hf_pretrain_name, use_safetensors=False)
 model.save_pretrained(cache_dir, safe_serialization=False)
 ```
 
-After doing so, change the paths in the 'convert_model_weights.py' script accordingly and run it to provide initial weights for Occluder Mask Decoder.
+After doing so, run the 'convert_model_weights.py' script to generate initial weights for the Occluder Mask Decoder.
 
 ### Prepare Datasets
-Download Occ-PIDray dataset from this link:
+Download datasets from the following links:
 
-Download Occ-PIXray dataset from this link:
+[PIDray-A](https://pan.baidu.com/s/1cR0ykp6RAs6lD_ogFxqnjg?pwd=rkz5)
 
-We also provide script 'convert_occlusion_annotation.py' which generate occlusion annotation for customized COCO format datasets. To generate your own occlusion-annotated datasets, change paths accordingly in the script and run it.
+[PIXray-A](https://pan.baidu.com/s/1kAtNeceCtTBc1JnFfcbaSg?pwd=vr2w)
+
+#### Custom Dataset Support
+Use 'convert_occlusion_annotation.py' to generate occlusion annotations for COCO-format datasets. To generate your own occlusion-annotated datasets, modify paths in the script before execution.
+
 
 ### Modify Config Files
-Modify the paths in config files 'configs/occlusion/pid.py' and 'configs/occlusion/pix.py' accordingly.
-
+Update the paths in the configuration files 'configs/occlusion/pid.py' and 'configs/occlusion/pix.py' according to your setup.
 
 
 ## Running
-All our code are tested and running successfully on both 1 NVIDIA A800 Tensor Core GPU with 80GB VRAM and 8 NVIDIA GeForce RTX 4090 GPUs.
+Our code has been successfully tested on:
+
+* 1 × NVIDIA A800 Tensor Core GPU
+
+* 8 × NVIDIA GeForce RTX 4090 GPUs
+
 
 To train our model:
 ```
-# Singlue GPU, OccPIDray
+# Single GPU, PIDray-A
 CUDA_VISIBLE_DEVICES=0 bash ./tools/dist_train.sh configs/occlusion/pid.py 1
-# Singlue GPU, OccPIXray
+# Single GPU, PIXray-A
 CUDA_VISIBLE_DEVICES=0 bash ./tools/dist_train.sh configs/occlusion/pix.py 1
 
-
-# Multiple GPUs, OccPIDray
+# Multiple GPUs, PIDray-A
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./tools/dist_train.sh configs/occlusion/pid.py 8
-# Multiple GPUs, OccPIXray
+# Multiple GPUs, PIXray-A
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./tools/dist_train.sh configs/occlusion/pix.py 8
 ```
 
-To test our model, change the 'CHECKPOINT_FILE' and 'GPU_NUM' to your own checkpoint path and GPU numbers:
+To test our model, set the 'CHECKPOINT_FILE' to your checkpoint path, and configure 'GPU_NUM' to match your GPU setup:
 ```
-# OccPIDray
-bash ./tools/dist_test.sh configs/occlusion/pid.py /root/autodl-tmp/Occlusion/OccPIDray.pth 1
-# OccPIXray
-bash ./tools/dist_test.sh configs/occlusion/pix.py /root/autodl-tmp/Occlusion/OccPIXray.pth 1
+# PIDray-A
+bash ./tools/dist_test.sh configs/occlusion/pid.py {CHECKPOINT_FILE} {GPU_NUM}
+# PIXray-A
+bash ./tools/dist_test.sh configs/occlusion/pix.py {CHECKPOINT_FILE} {GPU_NUM}
 ```
 
-Additionally, we provide our trained model checkpoints in the following links:
-OccPIDray:
-OccPIXray:
+Additionally, we provide model checkpoints in the following link: [Checkpoints](https://pan.baidu.com/s/1KvoAB1V0hB6d7RALb-_FLA?pwd=fcjs)
 
 
-## Thanks
-This code is based on [RSPrompter](https://github.com/KyanChen/RSPrompter/) and [MMDetection](https://github.com/open-mmlab/mmdetection). Many thanks for your code implementation.
+## Acknowledgements
+This implementation builds upon:
 
+* [RSPrompter](https://github.com/KyanChen/RSPrompter/)
+
+* [MMDetection](https://github.com/open-mmlab/mmdetection)
+
+We sincerely appreciate their contributions.
 
 ## Cite this paper
 ```
