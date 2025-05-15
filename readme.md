@@ -34,7 +34,7 @@ model.save_pretrained(cache_dir, safe_serialization=False)
 After doing so, run the 'convert_model_weights.py' script to generate initial weights for the Occluder Mask Decoder.
 
 ### Prepare Datasets
-Download datasets from the following links:
+Download datasets from the following links, notice that PIXray has been transformed to COCO-format:
 
 [PIDray-A](https://pan.baidu.com/s/1cR0ykp6RAs6lD_ogFxqnjg?pwd=rkz5)
 
