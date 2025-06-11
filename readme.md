@@ -14,6 +14,7 @@ pip install -U openmim
 mim install mmcv==2.1.0
 conda install mpi4py
 pip install -U transformers==4.38.1 wandb==0.16.3 einops pycocotools shapely scipy terminaltables importlib peft==0.8.2 mat4py==0.6.0
+conda install importlib-metadata
 ```
 
 ### Prepare Model Weights
