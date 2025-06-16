@@ -1,5 +1,5 @@
 # Prohibited Items Segmentation via Occlusion-aware Bilayer Modeling (ICME 2025)
-Official PyTorch Implementation of Prohibited Items Segmentation via Occlusion-aware Bilayer Modeling.
+Official PyTorch Implementation of Prohibited Items Segmentation via Occlusion-aware Bilayer Modeling. [Arxiv link](https://arxiv.org/abs/2506.11661).
 
 ## Get Started
 ### Dependencies
