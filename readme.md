@@ -1,11 +1,11 @@
 # Prohibited Items Segmentation via Occlusion-aware Bilayer Modeling (ICME 2025)
-Official PyTorch Implementation of Prohibited Items Segmentation via Occlusion-aware Bilayer Modeling. [Arxiv link](https://arxiv.org/abs/2506.11661).
+Official PyTorch Implementation of Prohibited Items Segmentation via Occlusion-aware Bilayer Modeling: [Paper](https://arxiv.org/abs/2506.11661).
 
 ## Get Started
 ### Dependencies
-Code is tested on Linux with Pytorch 2.1.2 and CUDA 11.8.
+Code is successfully tested on Linux with Pytorch 2.1.2 and CUDA 11.8.
 
-If necessary, install numpy<2.0.0 (we use 1.24.0).
+If necessary, install numpy<2.0.0 (we use 1.24.0):
 ```
 conda create -n occ python=3.10
 conda activate occ
